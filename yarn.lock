@@ -6865,9 +6865,26 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@internal/plugin-weather@workspace:^, @internal/plugin-weather@workspace:plugins/weather":
+"@infosys_ltd/daily-weather-plugin@file:../../plugins/weather::locator=app%40workspace%3Apackages%2Fapp":
+  version: 1.0.0
+  resolution: "@infosys_ltd/daily-weather-plugin@file:../../plugins/weather#../../plugins/weather::hash=2ba7a0&locator=app%40workspace%3Apackages%2Fapp"
+  dependencies:
+    "@backstage/core-components": "npm:^0.16.4"
+    "@backstage/core-plugin-api": "npm:^1.10.4"
+    "@backstage/theme": "npm:^0.6.4"
+    "@material-ui/core": "npm:^4.9.13"
+    "@material-ui/icons": "npm:^4.9.1"
+    "@material-ui/lab": "npm:^4.0.0-alpha.61"
+    react-use: "npm:^17.2.4"
+  peerDependencies:
+    react: ^16.13.1 || ^17.0.0 || ^18.0.0
+  checksum: 10c0/0cd5606ecfa0609199313378b629cb2f8a02f2b2602d03f221c4212207dc4429b75d282fbdcb1a5fef0fbd3e5870eba1f02325d9365279a58d4aee836195fbc0
+  languageName: node
+  linkType: hard
+
+"@infosys_ltd/daily-weather-plugin@workspace:plugins/weather":
   version: 0.0.0-use.local
-  resolution: "@internal/plugin-weather@workspace:plugins/weather"
+  resolution: "@infosys_ltd/daily-weather-plugin@workspace:plugins/weather"
   dependencies:
     "@backstage/cli": "npm:^0.30.0"
     "@backstage/core-app-api": "npm:^1.15.5"
@@ -13767,7 +13784,7 @@ __metadata:
     "@backstage/plugin-user-settings": "npm:^0.8.19"
     "@backstage/test-utils": "npm:^1.7.5"
     "@backstage/theme": "npm:^0.6.4"
-    "@internal/plugin-weather": "workspace:^"
+    "@infosys_ltd/daily-weather-plugin": "file:../../plugins/weather"
     "@material-ui/core": "npm:^4.12.2"
     "@material-ui/icons": "npm:^4.9.1"
     "@playwright/test": "npm:^1.32.3"

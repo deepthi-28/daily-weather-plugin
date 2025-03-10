@@ -36,7 +36,7 @@ import { AppRouter, FlatRoutes } from '@backstage/core-app-api';
 import { CatalogGraphPage } from '@backstage/plugin-catalog-graph';
 import { RequirePermission } from '@backstage/plugin-permission-react';
 import { catalogEntityCreatePermission } from '@backstage/plugin-catalog-common/alpha';
-import { WeatherPage } from '@internal/plugin-weather';
+import { WeatherPage } from '@infosys_ltd/daily-weather-plugin';
 
 const app = createApp({
   apis,
