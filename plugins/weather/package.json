@@ -30,7 +30,7 @@
     "plugin"
   ],
   "sideEffects": false,
-    "scripts": {
+  "scripts": {
     "start": "backstage-cli package start",
     "build": "backstage-cli package build",
     "lint": "backstage-cli package lint",
@@ -69,4 +69,3 @@
   "configSchema": "config.d.ts",
   "module": "./dist/index.esm.js"
 }
-
