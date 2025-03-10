@@ -32,29 +32,24 @@ export class WeatherClient implements WeatherApi {
 
   private async getServiceUrl(): Promise<string> {
     const proxyUrl = await this.discoveryApi.getBaseUrl('proxy');
-    console.log(`Proxy URL: ${proxyUrl}`);
     return `${proxyUrl}${this.proxyPath}`;
   }
 
   private async fetch<T = any>(input: string, init?: RequestInit): Promise<T> {
     const serviceUrl = await this.getServiceUrl();
     const apiUrl = `${serviceUrl}${input}`;
-    console.log(`Fetching from URL: ${apiUrl}`);
     const response = await this.fetchApi.fetch(apiUrl, init);
-    console.log(`Response Status: ${response.status}`);
     if (!response.ok) {
       console.error(`Response Error: ${response.statusText}`);
       throw await ResponseError.fromResponse(response);
     }
 
     const jsonResponse = await response.json();
-    console.log(`Response JSON: ${JSON.stringify(jsonResponse)}`);
     return jsonResponse;
   }
 
   public async getWeather(location: string): Promise<WeatherResponse> {
     const url = `/current?access_key=${this.apiKey}&query=${location}`;
-    console.log(`Constructed URL: ${url}`);
 
     const response = await this.fetch<WeatherResponse>(url, {
       method: 'GET',

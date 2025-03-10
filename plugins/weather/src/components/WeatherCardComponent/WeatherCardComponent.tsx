@@ -94,7 +94,7 @@ export const WeatherCardComponent = () => {
               <Typography>Wind: {weather.current.wind_speed} km/h</Typography>
               <Typography>Humidity: {weather.current.humidity}%</Typography>
               <Typography>Feels Like: {weather.current.feelslike}°C</Typography>
-              <Typography>Visibility: {weather.current.visibility} km}</Typography>
+              <Typography>Visibility: {weather.current.visibility} km</Typography>
               <Typography>Local Time: {weather.location.localtime}</Typography>
               <Typography>Day/Night: {weather.current.is_day === 'yes' ? 'Day' : 'Night'}</Typography>
             </>
