@@ -16,9 +16,9 @@ After installation, create an account on [Weatherstack](https://weatherstack.com
 
 Update your `app-config.yaml` file with the following changes:
 
-![Proxy Configuration](https://github.com/Infosys/daily-weather-plugin-backstage/blob/main/plugins/weather/src/docs/proxyconfig.png)
+![Proxy Configuration](https://github.com/Infosys/daily-weather-plugin/blob/main/plugins/weather/src/docs/proxyconfig.png)
 
-![Weather Plugin Configuration](https://github.com/Infosys/daily-weather-plugin-backstage/blob/main/plugins/weather/src/docs/weathepluginconfig.png)
+![Weather Plugin Configuration](https://github.com/Infosys/daily-weather-plugin/blob/main/plugins/weather/src/docs/weathepluginconfig.png)
 
 **Note:** You can change the city name as per your weather check requirements.
 
@@ -59,11 +59,11 @@ const overviewContent = (
 
 **Weather Card in Entity Page:**
 
-![Weather Card in Entity Page](https://github.com/Infosys/daily-weather-plugin-backstage/blob/main/plugins/weather/src/docs/weathercardentity.png)
+![Weather Card in Entity Page](https://github.com/Infosys/daily-weather-plugin/blob/main/plugins/weather/src/docs/weathercardentity.png)
 
 **Weather Plugin Configuration:**
 
-![Weather Plugin page](https://github.com/Infosys/daily-weather-plugin-backstage/blob/main/plugins/weather/src/docs/weatherplugin.png)
+![Weather Plugin page](https://github.com/Infosys/daily-weather-plugin/blob/main/plugins/weather/src/docs/weatherplugin.png)
 
 ## Contributing
 
