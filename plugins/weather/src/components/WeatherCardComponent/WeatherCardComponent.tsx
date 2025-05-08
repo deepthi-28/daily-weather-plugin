@@ -3,7 +3,7 @@ import { useApi } from '@backstage/core-plugin-api';
 import { weatherApiRef } from '../../api/WeatherApi';
 import { Card, CardContent, Typography, CircularProgress } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { WeatherResponse, ErrorResponse } from '../../api/types';
+import { WeatherResponse } from '../../api/types';
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -35,29 +35,17 @@ export const WeatherCardComponent = () => {
   const weatherApi = useApi(weatherApiRef);
   const [weather, setWeather] = useState<WeatherResponse | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
-  const [errorResponse, setErrorResponse] = useState<ErrorResponse | null>(null);
+  const [error, setError] = useState<string | null>(null); // Removed errorResponse
 
   useEffect(() => {
     const fetchWeather = async () => {
       try {
         setLoading(true);
         const weatherData: WeatherResponse = await weatherApi.getWeather();
-        if (!weatherData.success && weatherData.error) {
-          const errorInfo = weatherData.error;
-          setError(`Error ${errorInfo.code}: ${errorInfo.type} - ${errorInfo.info}`);
-          setErrorResponse(weatherData as ErrorResponse);
-          setWeather(null);
-        } else {
-          setWeather(weatherData);
-          setError(null);
-          setErrorResponse(null);
-        }
+        setWeather(weatherData);
+        setError(null);
       } catch (err) {
         console.error(`Failed to fetch weather data: ${err}`);
-        if (typeof err === 'object' && err !== null) {
-          setErrorResponse(err as ErrorResponse);
-        }
         setError('Failed to fetch weather data');
         setWeather(null);
       } finally {
@@ -75,12 +63,11 @@ export const WeatherCardComponent = () => {
   return (
     <Card className={classes.card}>
       <CardContent className={classes.cardContent}>
-        <Typography variant="h5">Weather in Stockholm</Typography>
+        <Typography variant="h5">
+          Weather in {weather?.location.name || 'Unknown Location'}
+        </Typography>
         {error ? (
-          <>
-            <Typography color="error">{error}</Typography>
-            <Typography variant="body2" color="error">{JSON.stringify(errorResponse, null, 2)}</Typography>
-          </>
+          <Typography color="error">{error}</Typography>
         ) : (
           weather && (
             <>
