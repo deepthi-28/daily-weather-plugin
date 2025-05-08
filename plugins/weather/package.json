@@ -2,7 +2,7 @@
   "name": "@infosys_ltd/daily-weather-plugin",
   "description": "The Daily Weather Plugin for Backstage provides real-time weather information for a specified location using the Weatherstack API.",
   "author": "Infosys",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "license": "Apache-2.0",
   "main": "src/index.ts",
   "types": "src/index.ts",
