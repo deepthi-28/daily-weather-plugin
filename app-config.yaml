@@ -27,7 +27,7 @@ integrations:
 proxy:
   endpoints:
     '/weather':
-      target: 'http://api.weatherstack.com/current?access_key=YOUR_API_KEY&query=YOUR_DEFAULT_LOCATION'
+      target: 'http://api.weatherstack.com/current?access_key=${WEATHERSTACK_ACCESS_KEY}&query=${WEATHERSTACK_DEFAULT_LOCATION}'
       changeOrigin: true
 techdocs:
   builder: 'local'
