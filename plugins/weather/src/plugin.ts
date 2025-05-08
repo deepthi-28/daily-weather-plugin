@@ -2,7 +2,6 @@ import {
   createPlugin,
   createRoutableExtension,
   createApiFactory,
-  configApiRef,
   discoveryApiRef,
   fetchApiRef,
 } from '@backstage/core-plugin-api';
@@ -18,12 +17,11 @@ export const weatherPlugin = createPlugin({
     createApiFactory({
       api: weatherApiRef,
       deps: {
-        configApi: configApiRef,
         discoveryApi: discoveryApiRef,
         fetchApi: fetchApiRef,
       },
-      factory: ({ configApi, discoveryApi, fetchApi }) =>
-        WeatherClient.fromConfig(configApi, {
+      factory: ({ discoveryApi, fetchApi }) =>
+        new WeatherClient({
           discoveryApi,
           fetchApi,
         }),

@@ -2,6 +2,8 @@
 
 The Daily Weather Plugin for Backstage provides real-time weather information for a specified location using the Weatherstack API. This plugin includes a secure backend proxy configuration to fetch weather data without exposing your API key.
 
+---
+
 ## Installation
 
 To install the plugin, run the following command:
@@ -12,62 +14,68 @@ yarn --cwd packages/app add @infosys_ltd/daily-weather-plugin
 
 After installation, create an account on [Weatherstack](https://weatherstack.com/) and generate your API Access Key.
 
-## Client Configuration
+---
 
-Update your `app-config.yaml` file with the following changes:
+## Configuration
 
-![Proxy Configuration](https://github.com/Infosys/daily-weather-plugin/blob/main/plugins/weather/src/docs/proxyconfig.png)
+### Backend Proxy Configuration
 
-![Weather Plugin Configuration](https://github.com/Infosys/daily-weather-plugin/blob/main/plugins/weather/src/docs/weathepluginconfig.png)
+Update your `app-config.yaml` file with the following proxy configuration:
 
-**Note:** You can change the city name as per your weather check requirements.
-
-## Using the Plugin
-
-You can use the weather card component anywhere in your Backstage pages, such as in the `EntityPage`. Here is an example:
-
-```typescript
-import { WeatherCardComponent } from '@infosys_ltd/daily-weather-plugin';
-import { Grid } from '@material-ui/core';
-
-const overviewContent = (
-  <Grid container spacing={3} alignItems="stretch">
-    {entityWarningContent}
-    <Grid item md={6}>
-      <EntityAboutCard variant="gridItem" />
-    </Grid>
-    <Grid item md={6} xs={12}>
-      <EntityCatalogGraphCard variant="gridItem" height={400} />
-    </Grid>
-    <Grid item md={4} xs={12}>
-      <WeatherCardComponent />
-    </Grid>
-    <Grid item md={6} xs={12}>
-      <OpaMetadataAnalysisCard />
-    </Grid>
-    <Grid item md={4} xs={12}>
-      <EntityLinksCard />
-    </Grid>
-    <Grid item md={8} xs={12}>
-      <EntityHasSubcomponentsCard variant="gridItem" />
-    </Grid>
-  </Grid>
-);
+```yaml
+proxy:
+  endpoints:
+    '/weather':
+      target: 'http://api.weatherstack.com/current?access_key=YOUR_API_KEY&query=YOUR_DEFAULT_LOCATION'
+      changeOrigin: true
 ```
+
+**Important Notes:**
+- Replace `YOUR_API_KEY` with your Weatherstack API key.
+- Replace `YOUR_DEFAULT_LOCATION` with the desired default location (e.g., `Stockholm`).
+
+This configuration ensures:
+- The `access_key` (API key) is securely embedded in the proxy target URL.
+- The `query` parameter specifies the default location for weather data.
+
+---
+
+## Using Environment Variables (Optional)
+
+Instead of hardcoding the `access_key` and `query` in the configuration file, you can dynamically set them via environment variables. This approach is more secure and flexible.
+
+Set the following environment variables in your CLI:
+
+```bash
+export WEATHERSTACK_ACCESS_KEY=your_api_key_here
+export WEATHERSTACK_DEFAULT_LOCATION=your_default_location_here
+```
+
+Then update the `app-config.yaml` as follows:
+
+```yaml
+proxy:
+  endpoints:
+    '/weather':
+      target: 'http://api.weatherstack.com/current?access_key=${WEATHERSTACK_ACCESS_KEY}&query=${WEATHERSTACK_DEFAULT_LOCATION}'
+      changeOrigin: true
+```
+
+---
 
 ### Example Screenshots
 
-**Weather Card in Entity Page:**
-
-![Weather Card in Entity Page](https://github.com/Infosys/daily-weather-plugin/blob/main/plugins/weather/src/docs/weathercardentity.png)
-
 **Weather Plugin Configuration:**
 
-![Weather Plugin page](https://github.com/Infosys/daily-weather-plugin/blob/main/plugins/weather/src/docs/weatherplugin.png)
+![Weather Plugin Page](https://github.com/Infosys/daily-weather-plugin/blob/main/plugins/weather/src/docs/weatherplugin.png)
+
+---
 
 ## Contributing
 
 Contributions are welcome! Please open an issue or submit a pull request for any improvements or bug fixes.
+
+---
 
 ## License
 

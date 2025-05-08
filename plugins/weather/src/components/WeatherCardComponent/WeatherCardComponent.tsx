@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useApi, configApiRef } from '@backstage/core-plugin-api';
+import { useApi } from '@backstage/core-plugin-api';
 import { weatherApiRef } from '../../api/WeatherApi';
 import { Card, CardContent, Typography, CircularProgress } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -32,9 +32,7 @@ const useStyles = makeStyles((theme) => ({
 
 export const WeatherCardComponent = () => {
   const classes = useStyles();
-  const config = useApi(configApiRef);
   const weatherApi = useApi(weatherApiRef);
-  const defaultLocation = config.getOptionalString('weather.defaultLocation') || 'Stockholm';
   const [weather, setWeather] = useState<WeatherResponse | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -44,7 +42,7 @@ export const WeatherCardComponent = () => {
     const fetchWeather = async () => {
       try {
         setLoading(true);
-        const weatherData: WeatherResponse = await weatherApi.getWeather(defaultLocation);
+        const weatherData: WeatherResponse = await weatherApi.getWeather();
         if (!weatherData.success && weatherData.error) {
           const errorInfo = weatherData.error;
           setError(`Error ${errorInfo.code}: ${errorInfo.type} - ${errorInfo.info}`);
@@ -68,7 +66,7 @@ export const WeatherCardComponent = () => {
     };
 
     fetchWeather();
-  }, [defaultLocation, weatherApi]);
+  }, [weatherApi]);
 
   if (loading) {
     return <CircularProgress />;
@@ -77,7 +75,7 @@ export const WeatherCardComponent = () => {
   return (
     <Card className={classes.card}>
       <CardContent className={classes.cardContent}>
-        <Typography variant="h5">Weather in {defaultLocation}</Typography>
+        <Typography variant="h5">Weather in Stockholm</Typography>
         {error ? (
           <>
             <Typography color="error">{error}</Typography>

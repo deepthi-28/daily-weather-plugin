@@ -1,38 +1,20 @@
-import { ConfigApi, DiscoveryApi, FetchApi } from '@backstage/core-plugin-api';
+import { DiscoveryApi, FetchApi } from '@backstage/core-plugin-api';
 import { ResponseError } from '@backstage/errors';
 import { WeatherApi } from './WeatherApi';
 import { WeatherResponse } from './types';
 
-const DEFAULT_PROXY_PATH = '/weather';
-
 export class WeatherClient implements WeatherApi {
   private readonly discoveryApi: DiscoveryApi;
   private readonly fetchApi: FetchApi;
-  private readonly apiKey: string;
-  private readonly proxyPath: string;
 
-  static fromConfig(configApi: ConfigApi, dependencies: { discoveryApi: DiscoveryApi; fetchApi: FetchApi }) {
-    const weatherConfig = configApi.getConfig('weather');
-    const apiKey: string = weatherConfig.getString('apiKey');
-
-    return new WeatherClient({
-      discoveryApi: dependencies.discoveryApi,
-      fetchApi: dependencies.fetchApi,
-      apiKey,
-      proxyPath: weatherConfig.getOptionalString('proxyPath') ?? DEFAULT_PROXY_PATH,
-    });
-  }
-
-  constructor(opts: { discoveryApi: DiscoveryApi; fetchApi: FetchApi; apiKey: string; proxyPath: string }) {
+  constructor(opts: { discoveryApi: DiscoveryApi; fetchApi: FetchApi }) {
     this.discoveryApi = opts.discoveryApi;
     this.fetchApi = opts.fetchApi;
-    this.apiKey = opts.apiKey;
-    this.proxyPath = opts.proxyPath;
   }
 
   private async getServiceUrl(): Promise<string> {
     const proxyUrl = await this.discoveryApi.getBaseUrl('proxy');
-    return `${proxyUrl}${this.proxyPath}`;
+    return `${proxyUrl}/weather`;
   }
 
   private async fetch<T = any>(input: string, init?: RequestInit): Promise<T> {
@@ -48,8 +30,8 @@ export class WeatherClient implements WeatherApi {
     return jsonResponse;
   }
 
-  public async getWeather(location: string): Promise<WeatherResponse> {
-    const url = `/current?access_key=${this.apiKey}&query=${location}`;
+  public async getWeather(): Promise<WeatherResponse> {
+    const url = '';
 
     const response = await this.fetch<WeatherResponse>(url, {
       method: 'GET',
