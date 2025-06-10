@@ -70,11 +70,8 @@ proxy:
 ```bash
 import { WeatherPage } from '@infosys_ltd/daily-weather-plugin';
 ```
-:::note Note
-
-You have to import above WeatherPage and use it wherever its needed.
-
-:::
+> [!NOTE]
+> You have to import above WeatherPage and use it wherever its needed.
 
 ![Weather Plugin Page](https://github.com/Infosys/daily-weather-plugin/blob/main/plugins/weather/src/docs/weatherplugin.png)
 
