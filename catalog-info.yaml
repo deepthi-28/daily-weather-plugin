@@ -5,7 +5,7 @@ metadata:
   description: A Backstage plugin that fetches and displays real-time weather information using the Weatherstack API. It includes a secure backend proxy configuration.
   annotations:
     github.com/project-slug: Infosys/daily-weather-plugin
-    backstage.io/techdocs-ref: url:https://github.com/Infosys/daily-weather-plugin/blob/main/README.md
+    backstage.io/techdocs-ref: dir:.
 spec:
   type: plugin
   lifecycle: experimental
