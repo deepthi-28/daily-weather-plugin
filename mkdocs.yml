@@ -1,0 +1,10 @@
+site_name: 'Daily Weather Plugin'
+docs_dir: docs
+repo_url: https://github.com/Infosys/daily-weather-plugin
+plugins:
+  - techdocs-core
+
+nav:
+  - Overview:
+      - What is Daily Weather Plugin?: 'index.md'
+      - How to install the Daily Weather plugin?: 'dailyweatherplugin.md'
