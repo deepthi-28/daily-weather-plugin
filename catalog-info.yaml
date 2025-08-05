@@ -2,12 +2,11 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: daily-weather-plugin
-  description: An example of a Backstage application.
-  # Example for optional annotations
-  # annotations:
-  #   github.com/project-slug: backstage/backstage
-  #   backstage.io/techdocs-ref: dir:.
+  description: A Backstage plugin that fetches and displays real-time weather information using the Weatherstack API. It includes a secure backend proxy configuration.
+  annotations:
+    github.com/project-slug: Infosys/daily-weather-plugin
+    backstage.io/techdocs-ref: url:https://github.com/Infosys/daily-weather-plugin/blob/main/README.md
 spec:
-  type: website
-  owner: john@example.com
+  type: plugin
   lifecycle: experimental
+  owner: group:backstage-coe
