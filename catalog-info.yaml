@@ -6,8 +6,12 @@ metadata:
   annotations:
     github.com/project-slug: Infosys/daily-weather-plugin
     backstage.io/techdocs-ref: dir:.
+  tags: [plugin, weather, utility, frontend]
 spec:
   type: plugin
-  lifecycle: experimental
-  owner: group:admin-group
-  ownedBy: [group:admin-group, group:dev-group]
+  lifecycle: production
+  owner: group:admin-group 
+  ownedBy: [group:ADMCOE-Team, group:admin-group, group:dev-group]
+  dependsOn: []
+  system: "frontend-team"
+
