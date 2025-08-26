@@ -60,6 +60,10 @@ catalog:
       target: ../../examples/org.yaml
       rules:
         - allow: [User, Group]
+    jenkins:    
+      baseUrl: http://172.23.87.184:8080
+      username: backstage_coe
+      apiKey: 11964f2c78214ff57246022f3954c90a8a
   useUrlReadersSearch: true
 
 permission:
