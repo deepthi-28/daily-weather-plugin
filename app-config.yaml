@@ -61,9 +61,9 @@ catalog:
       rules:
         - allow: [User, Group]
     jenkins:    
-      baseUrl: http://172.23.87.184:8080
-      username: backstage_coe
-      apiKey: 11964f2c78214ff57246022f3954c90a8a
+      baseUrl: http://localhost:9090
+      username: admin
+      apiKey: 11b837fff682db5e369e38c198851326f1
   useUrlReadersSearch: true
 
 permission:
